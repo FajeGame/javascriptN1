@@ -1,0 +1,10 @@
+let One = 1;
+let Two = "2";
+let Three = true;
+let Four = null;
+let Five = undefined;
+console.log(typeof(One));
+console.log(typeof(Two));
+console.log(typeof(Three));
+console.log(typeof(Four));
+console.log(typeof(Five));
