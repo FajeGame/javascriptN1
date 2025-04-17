@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript задания</title>
+</head>
+<body>
+    <h1>JavaScript задания</h1>
+
+    <!-- Задание a -->
+    <h2>a. Вычисление sin(x)</h2>
+    <button onclick="taskA()">Запустить</button>
+
+    <!-- Задание b -->
+    <h2>b. Проверка точки в квадрате</h2>
+    <button onclick="taskB()">Запустить</button>
+
+    <!-- Задание c -->
+    <h2>c. Сумма двух квадратов</h2>
+    <button onclick="taskC()">Запустить</button>
+
+    <!-- Задание d -->
+    <h2>d. Проверка email</h2>
+    <button onclick="taskD()">Запустить</button>
+
+    <!-- Задание e -->
+    <h2>e. Доля латинских букв</h2>
+    <button onclick="taskE()">Запустить</button>
+
+    <!-- Задание f -->
+    <h2>f. Удаление повторяющихся слов</h2>
+    <button onclick="taskF()">Запустить</button>
+
+    <!-- Задание g -->
+    <h2>g. Массив по 5 чисел в строке</h2>
+    <button onclick="taskG()">Запустить</button>
+
+    <!-- Задание h -->
+    <h2>h. Матрица с нулями на диагоналях</h2>
+    <button onclick="taskH()">Запустить</button>
+
+    <!-- Задание i -->
+    <h2>i. Дата + n дней</h2>
+    <button onclick="taskI()">Запустить</button>
+
+    <!-- Задание j -->
+    <h2>j. Месяцы до 1 сентября</h2>
+    <button onclick="taskJ()">Запустить</button>
+
+    <script>
+        // Задание a
+        function taskA() {
+            const x = parseFloat(prompt("Введите значение x для вычисления sin(x):"));
+            if (isNaN(x)) {
+                alert("Ошибка: введено не число!");
+                return;
+            }
+            alert(`sin(${x}) = ${Math.sin(x)}`);
+        }
+
+        // Задание b
+        function taskB() {
+            const x1 = parseFloat(prompt("Введите x первой вершины квадрата:"));
+            const y1 = parseFloat(prompt("Введите y первой вершины квадрата:"));
+            const x2 = parseFloat(prompt("Введите x второй вершины квадрата:"));
+            const y2 = parseFloat(prompt("Введите y второй вершины квадрата:"));
+            
+            if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) {
+                alert("Ошибка: введены не числа!");
+                return;
+            }
+            
+            const x = parseFloat(prompt("Введите x точки:"));
+            const y = parseFloat(prompt("Введите y точки:"));
+            
+            if (isNaN(x) || isNaN(y)) {
+                alert("Ошибка: координаты точки должны быть числами!");
+                return;
+            }
+            
+            const minX = Math.min(x1, x2);
+            const maxX = Math.max(x1, x2);
+            const minY = Math.min(y1, y2);
+            const maxY = Math.max(y1, y2);
+            
+            const isInside = x >= minX && x <= maxX && y >= minY && y <= maxY;
+            alert(`Точка (${x}, ${y}) ${isInside ? "принадлежит" : "не принадлежит"} квадрату.`);
+        }
+
+        // Задание c
+        function taskC() {
+            const num = parseInt(prompt("Введите натуральное число:"));
+            if (isNaN(num) || num <= 0) {
+                alert("Ошибка: введено не натуральное число!");
+                return;
+            }
+            
+            let found = false;
+            for (let a = 1; a * a <= num; a++) {
+                const bSquared = num - a * a;
+                const b = Math.sqrt(bSquared);
+                if (b === Math.floor(b) && b > 0) {
+                    found = true;
+                    break;
+                }
+            }
+            
+            alert(`Число ${num} ${found ? "можно" : "нельзя"} представить в виде суммы двух квадратов натуральных чисел.`);
+        }
+
+        // Задание d
+        function taskD() {
+            const email = prompt("Введите адрес электронной почты:");
+            if (email.indexOf('@') === -1) {
+                alert("Внимание: email не содержит символ @!");
+            } else {
+                alert("Email содержит символ @.");
+            }
+        }
+
+        // Задание e
+        function taskE() {
+            const s = prompt("Введите строку:");
+            let latinCount = 0;
+            
+            for (let i = 0; i < s.length; i++) {
+                const c = s[i];
+                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+                    latinCount++;
+                }
+            }
+            
+            const percentage = (latinCount / s.length) * 100;
+            alert(`Доля латинских букв в строке: ${percentage.toFixed(2)}%`);
+        }
+
+        // Задание f
+        function taskF() {
+            const s = prompt("Введите строку:");
+            const words = s.split(/\s+/).filter(word => word.length > 0);
+            const uniqueWords = [];
+            const seen = {};
+            
+            for (const word of words) {
+                if (!seen[word]) {
+                    seen[word] = true;
+                    uniqueWords.push(word);
+                }
+            }
+            
+            alert(`Строка без повторяющихся слов: ${uniqueWords.join(' ')}`);
+        }
+
+        // Задание g
+        function taskG() {
+            const n = parseInt(prompt("Введите количество элементов массива:"));
+            if (isNaN(n) || n <= 0) {
+                alert("Ошибка: введено не натуральное число!");
+                return;
+            }
+            
+            const arr = [];
+            for (let i = 0; i < n; i++) {
+                arr.push(Math.floor(Math.random() * 100));
+            }
+            
+            let output = "Массив в обратном порядке:\n";
+            for (let i = arr.length - 1; i >= 0; i--) {
+                output += arr[i] + " ";
+                if ((arr.length - i) % 5 === 0 || i === 0) {
+                    output += "\n";
+                }
+            }
+            
+            alert(output);
+        }
+
+        // Задание h
+        function taskH() {
+            const n = parseInt(prompt("Введите порядок матрицы (n):"));
+            if (isNaN(n) || n <= 0) {
+                alert("Ошибка: введено не натуральное число!");
+                return;
+            }
+            
+            // Создаем матрицу
+            const matrix = [];
+            for (let i = 0; i < n; i++) {
+                matrix[i] = [];
+                for (let j = 0; j < n; j++) {
+                    matrix[i][j] = Math.floor(Math.random() * 100);
+                }
+            }
+            
+            // Находим min и max на диагоналях
+            let minDiag = Infinity;
+            let maxDiag = -Infinity;
+            
+            for (let i = 0; i < n; i++) {
+                // Главная диагональ
+                if (matrix[i][i] < minDiag) minDiag = matrix[i][i];
+                if (matrix[i][i] > maxDiag) maxDiag = matrix[i][i];
+                
+                // Побочная диагональ
+                if (matrix[i][n-1-i] < minDiag) minDiag = matrix[i][n-1-i];
+                if (matrix[i][n-1-i] > maxDiag) maxDiag = matrix[i][n-1-i];
+            }
+            
+            // Заменяем элементы на диагоналях, кроме min и max
+            for (let i = 0; i < n; i++) {
+                // Главная диагональ
+                if (matrix[i][i] !== minDiag && matrix[i][i] !== maxDiag) {
+                    matrix[i][i] = 0;
+                }
+                
+                // Побочная диагональ
+                if (matrix[i][n-1-i] !== minDiag && matrix[i][n-1-i] !== maxDiag) {
+                    matrix[i][n-1-i] = 0;
+                }
+            }
+            
+            // Выводим матрицу
+            let output = "Результат:\n";
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n; j++) {
+                    output += matrix[i][j] + "\t";
+                }
+                output += "\n";
+            }
+            
+            alert(output);
+        }
+
+        // Задание i
+        function taskI() {
+            const n = parseInt(prompt("Введите количество дней для добавления:"));
+            if (isNaN(n)) {
+                alert("Ошибка: введено не число!");
+                return;
+            }
+            
+            const currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() + n);
+            
+            alert(`Дата через ${n} дней: ${currentDate.toLocaleDateString()}`);
+        }
+
+        // Задание j
+        function taskJ() {
+            const currentDate = new Date();
+            let targetYear = currentDate.getFullYear();
+            
+            // Создаем дату 1 сентября текущего года
+            const septemberFirst = new Date(targetYear, 8, 1); // 8 = сентябрь
+            
+            // Если текущая дата уже после 1 сентября, берем следующий год
+            if (currentDate > septemberFirst) {
+                targetYear++;
+                septemberFirst.setFullYear(targetYear);
+            }
+            
+            // Вычисляем разницу в месяцах
+            let monthsDiff = (septemberFirst.getFullYear() - currentDate.getFullYear()) * 12;
+            monthsDiff += septemberFirst.getMonth() - currentDate.getMonth();
+            
+            // Корректировка, если текущий день месяца больше, чем в целевой дате
+            if (currentDate.getDate() > septemberFirst.getDate()) {
+                monthsDiff--;
+            }
+            
+            alert(`До 1 сентября осталось ${monthsDiff} месяцев.`);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание списка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        ul {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        li {
+            margin: 5px 0;
+            padding: 5px;
+            list-style-type: decimal;
+        }
+    </style>
+</head>
+<body>
+    <h2>Динамическое создание списка</h2>
+    <ul id="dynamicList"></ul>
+
+    <script>
+        // Функция для создания списка
+        function createList() {
+            const ul = document.getElementById('dynamicList');
+            
+            // Запрашиваем количество пунктов
+            const count = parseInt(prompt("Введите количество пунктов списка:", "5"));
+            
+            // Проверяем введенное значение
+            if (isNaN(count) || count <= 0) {
+                alert("Нужно ввести положительное число!");
+                return;
+            }
+            
+            // Очищаем список перед созданием новых элементов
+            ul.innerHTML = '';
+            
+            // Создаем пункты списка
+            for (let i = 1; i <= count; i++) {
+                const itemText = prompt(`Введите текст для пункта ${i}:`, `Пункт ${i}`);
+                
+                if (itemText === null) {
+                    // Если пользователь нажал "Отмена", прерываем создание списка
+                    break;
+                }
+                
+                // Создаем элемент списка и добавляем его
+                const li = document.createElement('li');
+                li.textContent = itemText || `Пункт ${i}`; // Если текст не введен, используем стандартный
+                ul.appendChild(li);
+            }
+            
+            alert("Список успешно создан!");
+        }
+        
+        // Запускаем создание списка при загрузке страницы
+        createList();
+    </script>
+</body>
+</html>
