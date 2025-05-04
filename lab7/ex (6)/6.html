@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Слесарев Никита - Расчет средней зарплаты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Расчет средней зарплаты</h1>
+    
+    <p>Введите начисленную зарплату за следующие месяцы</p>
+    
+    <form id="salaryForm">
+        <div class="form-group">
+            <label for="month1">Январь:</label>
+            <input type="number" id="month1" value="300" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="month2">Февраль:</label>
+            <input type="number" id="month2" value="320" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="month3">Март:</label>
+            <input type="number" id="month3" value="350" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="month4">Апрель:</label>
+            <input type="number" id="month4" value="370" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="month5">Май:</label>
+            <input type="number" id="month5" value="340" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="month6">Июнь:</label>
+            <input type="number" id="month6" value="380" required>
+        </div>
+        
+        <button type="button" onclick="calculateAverage()">Вычислить</button>
+    </form>
+    
+    <div class="form-group result">
+        <label for="average">Средняя зарплата:</label>
+        <input type="number" id="average" value="350" readonly>
+    </div>
+    
+    <script>
+        function calculateAverage() {
+            const month1 = parseFloat(document.getElementById('month1').value);
+            const month2 = parseFloat(document.getElementById('month2').value);
+            const month3 = parseFloat(document.getElementById('month3').value);
+            const month4 = parseFloat(document.getElementById('month4').value);
+            const month5 = parseFloat(document.getElementById('month5').value);
+            const month6 = parseFloat(document.getElementById('month6').value);
+            
+            const average = (month1 + month2 + month3 + month4 + month5 + month6) / 6;
+            
+            document.getElementById('average').value = Math.round(average);
+        }
+    </script>
+</body>
+</html>

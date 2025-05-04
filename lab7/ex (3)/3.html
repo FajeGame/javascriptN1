@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача 3</title>
+    <style>
+        #coords {
+            font-size: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="coords">Кликните в любом месте страницы</div>
+    <script>
+        document.addEventListener('click', function(e) {
+            document.getElementById('coords').textContent = 
+                `Координаты: X=${e.clientX}, Y=${e.clientY}`;
+        });
+    </script>
+</body>
+</html>

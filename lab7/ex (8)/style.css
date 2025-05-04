@@ -1,0 +1,194 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.invisible {
+    display: none !important;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.frame {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.frame-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: #4CAF50;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn-secondary {
+    background-color: #757575;
+}
+
+.btn-secondary:hover {
+    background-color: #616161;
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.progress-indicator {
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    height: 6px;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e0e0e0;
+    z-index: 0;
+    transform: translateY(-50%);
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #757575;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.card-number {
+    display: flex;
+    gap: 10px;
+}
+
+.card-part {
+    flex: 1;
+    text-align: center;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.form-checkbox input {
+    width: auto;
+    margin-right: 10px;
+}
+
+#verificationSection {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}

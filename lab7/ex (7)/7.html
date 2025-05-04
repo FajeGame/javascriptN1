@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактор горизонтальных линий</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .control-group {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .color-option {
+            padding: 8px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .color-option.selected {
+            outline: 2px solid #333;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .demo-area {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        hr.custom-hr {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Горизонтальные линии</h1>
+    <p>Выберите значения параметров, которые требуется изменить, и нажмите кнопку <strong>Выполнить</strong>.</p>
+    
+    <hr class="custom-hr" id="demoLine">
+    
+    <div class="control-group">
+        <h2>Выравнивание</h2>
+        <div>
+            <input type="radio" id="alignLeft" name="alignment" value="left" checked>
+            <label for="alignLeft">LEFT</label>
+            
+            <input type="radio" id="alignCenter" name="alignment" value="center">
+            <label for="alignCenter">CENTER</label>
+            
+            <input type="radio" id="alignRight" name="alignment" value="right">
+            <label for="alignRight">RIGHT</label>
+        </div>
+        
+        <table>
+            <tr>
+                <td><input type="number" id="lineSize" value="25" min="1"></td>
+                <td>толщина линии (size)</td>
+            </tr>
+            <tr>
+                <td><input type="number" id="lineWidth" value="270" min="1"></td>
+                <td>длина линии (width)</td>
+            </tr>
+        </table>
+        
+        <button onclick="updateLine()">Выполнить</button>
+    </div>
+    
+    <div class="control-group">
+        <h2>Цвет линии (color)</h2>
+        <div class="color-options" id="colorOptions">
+            <div class="color-option" style="background-color: teal;" onclick="selectColor('teal', this)">teal</div>
+            <div class="color-option" style="background-color: green;" onclick="selectColor('green', this)">green</div>
+            <div class="color-option" style="background-color: olive;" onclick="selectColor('olive', this)">olive</div>
+            <div class="color-option" style="background-color: navy;" onclick="selectColor('navy', this)">navy</div>
+            <div class="color-option" style="background-color: purple;" onclick="selectColor('purple', this)">purple</div>
+            <div class="color-option" style="background-color: red;" onclick="selectColor('red', this)">red</div>
+            <div class="color-option" style="background-color: gray;" onclick="selectColor('gray', this)">gray</div>
+            <div class="color-option" style="background-color: silver;" onclick="selectColor('silver', this)">silver</div>
+            <div class="color-option" style="background-color: yellow;" onclick="selectColor('yellow', this)">yellow</div>
+            <div class="color-option" style="background-color: blue;" onclick="selectColor('blue', this)">blue</div>
+            <div class="color-option" style="background-color: fuchsia;" onclick="selectColor('fuchsia', this)">fuchsia</div>
+            <div class="color-option" style="background-color: white; border: 1px solid #ccc;" onclick="selectColor('white', this)">white</div>
+        </div>
+        
+        <button onclick="updateLine()">Обновить</button>
+    </div>
+    
+    <script>
+        let selectedColor = 'teal';
+        
+        function selectColor(color, element) {
+            selectedColor = color;
+            
+            document.querySelectorAll('.color-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            element.classList.add('selected');
+        }
+        
+        function updateLine() {
+            const line = document.getElementById('demoLine');
+            const size = document.getElementById('lineSize').value;
+            const width = document.getElementById('lineWidth').value;
+            const alignment = document.querySelector('input[name="alignment"]:checked').value;
+            
+            line.style.height = size + 'px';
+            line.style.width = width + 'px';
+            line.style.backgroundColor = selectedColor;
+            line.style.border = 'none';
+            line.style.marginLeft = alignment === 'left' ? '0' : 'auto';
+            line.style.marginRight = alignment === 'right' ? '0' : 'auto';
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.color-option').click();
+            updateLine();
+        });
+    </script>
+</body>
+</html>
